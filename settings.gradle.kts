@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "BinaRickyMorty"
 include(":app")
- 
+include(":design")
+include(":features")
