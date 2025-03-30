@@ -1,6 +1,7 @@
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bina.design.tokens.ColorTokens
 
 
 object SpacingTokens {
@@ -10,6 +11,7 @@ object SpacingTokens {
     val spacing16 = 16.dp
     val spacing24 = 24.dp
     val spacing32 = 32.dp
+    val spacing54 = 54.dp
 }
 
 object TypographyTokens {

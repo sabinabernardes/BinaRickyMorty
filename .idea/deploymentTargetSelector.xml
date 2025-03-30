@@ -13,19 +13,22 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="ListCharactersScreenPreview">
+      <SelectionState runConfigName="BinaErrorDialogPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreviewListCharactersScreen">
+      <SelectionState runConfigName="BinaHomeToolbarPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TypographyPreview">
+      <SelectionState runConfigName="BinaSearchToolbarPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreviewCharacterList">
+      <SelectionState runConfigName="DesignSystemPlaygroundScreenPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PreviewTokens">
+      <SelectionState runConfigName="playground">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="DesignSystemPlaygroundActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
