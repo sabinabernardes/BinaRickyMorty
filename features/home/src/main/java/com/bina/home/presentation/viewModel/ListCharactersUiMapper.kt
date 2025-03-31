@@ -1,17 +1,14 @@
 package com.bina.home.presentation.viewModel
 
-import com.bina.home.domain.model.ListCharacters
+import com.bina.home.data.model.ListCharactersModel
 import com.bina.home.presentation.ListCharactersUiModel
 
 class ListCharactersUiMapper {
-    fun map(domainModel: ListCharacters): List<ListCharactersUiModel> {
-        return domainModel.responseApi.map {
-            ListCharactersUiModel(
-                id = it.id,
-                name = it.name,
-                status = it.status,
-                image = it.image
-            )
-        }
+    fun map(result: ListCharactersModel.Results): ListCharactersUiModel {
+        return ListCharactersUiModel(
+            id = result.id,
+            name = result.name,
+            imageUrl = result.image
+        )
     }
 }

@@ -1,14 +1,15 @@
 package com.bina.home.di
 
+import ListCharactersViewModel
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.bina.home.data.CharactersPagingSource
 import com.bina.home.data.RepositoryRickAndMortyImpl
 import com.bina.home.data.datasource.RickAndMortyListCharacterDataSource
 import com.bina.home.data.datasource.RickAndMortyListCharacterDataSourceImpl
 import com.bina.home.data.mapper.ListCharactersMapper
 import com.bina.home.domain.repository.RepositoryRickAndMorty
-import com.bina.home.domain.useCase.ListCharactersUseCase
-import com.bina.home.presentation.ListCharactersViewModel
+import com.bina.home.domain.useCase.GetCharactersUseCase
 import com.bina.home.presentation.viewModel.ListCharactersUiMapper
 import com.bina.home.utils.RetrofitService
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -25,24 +26,25 @@ internal class ListCharactersModule : FeatureModule() {
                 apiService = get()
             )
         }
+        factory<CharactersPagingSource> { get() }
 
         factory<RepositoryRickAndMorty> {
             RepositoryRickAndMortyImpl(
-                serviceDataSource = get(), listCharactersMapper = get()
+                dataSource = get(),
             )
         }
         factory { ListCharactersMapper() }
     }
 
     public override val domainModule = module {
-        factory { ListCharactersUseCase(repository = get()) }
+        factory { GetCharactersUseCase(repository = get()) }
     }
 
     public override val presentationModule = module {
         factory { ListCharactersUiMapper() }
         viewModel {
             ListCharactersViewModel(
-                listCharactersUseCase = get(),
+                get(),
                 get()
             )
         }

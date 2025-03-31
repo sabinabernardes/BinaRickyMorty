@@ -1,6 +1,6 @@
 package com.bina.home.utils
 
-import com.bina.home.data.api.RickAndMortyApi
+import com.bina.home.data.api.CharactersApi
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,7 +11,7 @@ class RetrofitService {
     companion object {
         private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
-        val service: RickAndMortyApi by lazy {
+        val service: CharactersApi by lazy {
             val gson = GsonBuilder()
                 .setLenient()
                 .create()
@@ -19,7 +19,7 @@ class RetrofitService {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
-            retrofit.create(RickAndMortyApi::class.java)
+            retrofit.create(CharactersApi::class.java)
         }
     }
 }

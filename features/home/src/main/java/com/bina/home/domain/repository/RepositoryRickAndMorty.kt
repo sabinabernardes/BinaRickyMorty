@@ -1,8 +1,9 @@
 package com.bina.home.domain.repository
 
-import com.bina.home.domain.model.ListCharacters
+import androidx.paging.PagingData
+import com.bina.home.data.model.ListCharactersModel
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryRickAndMorty {
-    suspend fun getListCharacters(): Flow<ListCharacters>
+    fun getCharacters(query: String): Flow<PagingData<ListCharactersModel.Results>>
 }
