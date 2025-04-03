@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.bina.design"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 26
@@ -23,20 +23,33 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        jvmToolchain(11)
     }
 }
 
 dependencies {
+    implementation(platform(libs.androidx.compose.bom))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.compose.ui)
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.compose.material3)
+
+    // Testes
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
