@@ -65,6 +65,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview.android)
 
     implementation(libs.kotlin.serialization.json)
+    implementation(project(":navigation"))
+    implementation(project(":design"))
     // Testes
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
