@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -22,11 +23,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
-import com.bina.design.tokens.ColorTokens
 
 @Composable
 fun BinaSearchToolbar(
@@ -48,13 +47,13 @@ fun BinaSearchToolbar(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(ColorTokens.Primary)
+            .background(MaterialTheme.colorScheme.primary)
             .padding(SpacingTokens.spacing16)
     ) {
         Text(
             text = title,
             style = TypographyTokens.heading,
-            color = ColorTokens.OnPrimary
+            color = MaterialTheme.colorScheme.inversePrimary
         )
 
         Spacer(modifier = Modifier.height(SpacingTokens.spacing8))
@@ -66,7 +65,7 @@ fun BinaSearchToolbar(
                 Text(
                     text = "Buscar...",
                     style = TypographyTokens.caption,
-                    color = ColorTokens.OnBackground.copy(alpha = 0.6f)
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
                 )
             },
             singleLine = true,
@@ -75,15 +74,15 @@ fun BinaSearchToolbar(
                 .focusRequester(focusRequester),
             shape = RoundedCornerShape(SpacingTokens.spacing8),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = ColorTokens.Surface,
-                unfocusedContainerColor = ColorTokens.Surface,
-                focusedBorderColor = Color.Transparent,
-                unfocusedBorderColor = Color.Transparent,
-                cursorColor = ColorTokens.Primary,
-                focusedTextColor = ColorTokens.OnBackground,
-                unfocusedTextColor = ColorTokens.OnBackground,
-                focusedPlaceholderColor = ColorTokens.OnBackground.copy(alpha = 0.5f),
-                unfocusedPlaceholderColor = ColorTokens.OnBackground.copy(alpha = 0.5f)
+                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                cursorColor = MaterialTheme.colorScheme.primary,
+                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
         )
     }

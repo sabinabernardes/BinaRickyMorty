@@ -1,40 +1,57 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+
 }
 
 android {
-    namespace = "com.bina.binarickymorty"
-    compileSdk = 35
+    namespace = "com.bina.home"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.bina.binarickymorty"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
     buildFeatures {
         compose = true
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.4"
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlin {
-        jvmToolchain(11)
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 
 dependencies {
+    implementation(project(":design"))
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.paging.compose.android)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(platform(libs.androidx.compose.bom))
+
     implementation(platform(libs.androidx.compose.bom))
 
     // Compose
@@ -65,10 +82,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview.android)
 
     implementation(libs.kotlin.serialization.json)
-    implementation(project(":navigation"))
-    implementation(project(":design"))
-    implementation(project(":features"))
-    implementation(project(":features:home"))
+
     // Testes
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

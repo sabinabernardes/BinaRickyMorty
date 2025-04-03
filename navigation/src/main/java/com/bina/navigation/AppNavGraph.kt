@@ -4,19 +4,22 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.bina.home.presentation.view.ListCharactersScreen
 
 @Composable
 fun AppNavGraph(
     navController: NavHostController,
     startDestination: String = HomeRoute.route
 ) {
-    NavHost(navController = navController, startDestination = startDestination) {
-        composable(HomeRoute.route) {
-            // Chamará HomeScreen do módulo :home
+    NavHost(
+        navController = navController,
+        startDestination = startDestination
+    ) {
+        composable(route = HomeRoute.route) {
+            ListCharactersScreen()
         }
-        composable(FeatureRoute.route) {
-            // Chamará FeatureScreen do módulo :feature
-        }
+
+        // composable(route = "details/{id}") { backStackEntry -> ... }
     }
 }
 
