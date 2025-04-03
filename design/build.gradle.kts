@@ -48,6 +48,10 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.androidx.ui.tooling)
     implementation(libs.compose.material3)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.androidx.activity.ktx)
 
     // Testes
     testImplementation(libs.junit)
