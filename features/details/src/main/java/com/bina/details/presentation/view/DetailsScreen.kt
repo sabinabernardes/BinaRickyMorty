@@ -22,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.bina.design.components.BinaToolbar
 import com.bina.design.tokens.ColorTokens
 import com.bina.details.presentation.model.CharacterDetailsUiModel
 import com.bina.details.presentation.viewmodel.DetailsViewModel
@@ -42,28 +43,34 @@ fun DetailsScreen(
         viewModel.fetchCharacterDetails(characterId)
     }
 
-    Box(modifier = modifier.fillMaxSize()) {
-        when {
-            isLoading -> {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            }
+    Column(modifier = modifier.fillMaxSize()) {
+        BinaToolbar(
+            title = "Detalhes do Personagem",
+            onBackClick = onBack
+        )
+        Box(modifier = Modifier.weight(1f)) {
+            when {
+                isLoading -> {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
 
-            error != null -> {
-                Text(
-                    text = error ?: "Erro desconhecido",
-                    style = TypographyTokens.body,
-                    color = ColorTokens.Error,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-
-            characterDetails != null -> {
-                characterDetails?.let {
-                    CharacterDetailsContent(
-                        viewModel.characterDetailsUiMapper.map(
-                            it
-                        )
+                error != null -> {
+                    Text(
+                        text = error ?: "Erro desconhecido",
+                        style = TypographyTokens.body,
+                        color = ColorTokens.Error,
+                        modifier = Modifier.align(Alignment.Center)
                     )
+                }
+
+                characterDetails != null -> {
+                    characterDetails?.let {
+                        CharacterDetailsContent(
+                            viewModel.characterDetailsUiMapper.map(
+                                it
+                            )
+                        )
+                    }
                 }
             }
         }
