@@ -11,6 +11,7 @@ class RetrofitService {
     companion object {
         private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
+        @JvmStatic
         val service: CharactersApi by lazy {
             val gson = GsonBuilder()
                 .setLenient()

@@ -19,7 +19,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -33,13 +35,13 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ListCharactersScreen(
-    viewModel: ListCharactersViewModel = koinViewModel()
+    viewModel: ListCharactersViewModel = koinViewModel(),
+    navController: NavHostController
 ) {
     var query by remember { mutableStateOf("") }
 
     val uiState by viewModel.uiState.collectAsState()
 
-    // Inicia busca assim que a tela carregar
     LaunchedEffect(Unit) {
         viewModel.getCharacters()
     }
@@ -74,7 +76,8 @@ fun ListCharactersScreen(
                 val characters = state.data.collectAsLazyPagingItems()
                 CharacterList(
                     characters = characters,
-                    onRetry = { characters.retry() }
+                    onRetry = { characters.retry() },
+                    navController = navController
                 )
             }
 
@@ -92,7 +95,8 @@ fun ListCharactersScreen(
 @Composable
 fun CharacterList(
     characters: LazyPagingItems<ListCharactersUiModel>,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    navController: NavHostController
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -102,7 +106,11 @@ fun CharacterList(
                 CharacterListItem(
                     painter = rememberImagePainter(data = character.imageUrl ?: ""),
                     name = character.name ?: "Desconhecido",
-                    onClick = { /* navegar futuramente */ }
+                    onClick = {
+                        navController.navigate(
+                            "details/${character.id}"
+                        )
+                    }
                 )
             }
         }
@@ -134,4 +142,12 @@ fun CharacterList(
             else -> Unit
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ListCharactersScreenPreview() {
+    ListCharactersScreen(
+        navController = NavHostController(context = androidx.compose.ui.platform.LocalContext.current) // Replace with a proper NavHostController for preview
+    )
 }
