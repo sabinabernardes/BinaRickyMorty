@@ -15,10 +15,10 @@ import com.bina.home.utils.RetrofitService
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-internal class ListCharactersModule : FeatureModule() {
+internal class ListCharactersModule {
 
     @RequiresApi(Build.VERSION_CODES.N)
-    public override val dataModule = module {
+    val dataModule = module {
         factory { RetrofitService.service }
 
         factory<RickAndMortyListCharacterDataSource> {
@@ -36,11 +36,11 @@ internal class ListCharactersModule : FeatureModule() {
         factory { ListCharactersMapper() }
     }
 
-    public override val domainModule = module {
+    val domainModule = module {
         factory { GetCharactersUseCase(repository = get()) }
     }
 
-    public override val presentationModule = module {
+    val presentationModule = module {
         factory { ListCharactersUiMapper() }
         viewModel {
             ListCharactersViewModel(

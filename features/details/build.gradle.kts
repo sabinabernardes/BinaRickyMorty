@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-
 }
 
 android {
-    namespace = "com.bina.home"
-    compileSdk = 35
+    namespace = "com.bina.details"
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 26
@@ -40,20 +39,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":design"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.paging.common.android)
-    implementation(libs.androidx.paging.compose.android)
-
+    implementation(libs.ui.tooling.preview.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(platform(libs.androidx.compose.bom))
-
-    implementation(platform(libs.androidx.compose.bom))
-
     // Compose
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
@@ -67,24 +60,17 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
 
-    // Koin
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-
-    // Coil
-    implementation(libs.coil.compose)
-
-    implementation(libs.kotlin.serialization.json)
-
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.androidx.ui.tooling.preview.android)
-
-    implementation(libs.kotlin.serialization.json)
-
-    // Testes
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    implementation(project(":design"))
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }

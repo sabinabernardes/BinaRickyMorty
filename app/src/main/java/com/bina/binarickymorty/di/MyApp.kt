@@ -1,6 +1,7 @@
 package com.bina.binarickymorty.di
 
 import android.app.Application
+import com.bina.details.di.detailsFeatureModule
 import com.bina.home.di.homeFeatureModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
@@ -23,5 +24,6 @@ class MyApp : Application() {
 }
 
 fun provideAllModules() = listOf(
-    homeFeatureModule
+    homeFeatureModule,
+    detailsFeatureModule
 )
