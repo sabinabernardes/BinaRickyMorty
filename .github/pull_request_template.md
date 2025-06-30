@@ -18,6 +18,6 @@ Add any relevant context: Jira ticket, Figma link, background info, etc.
 
 Steps or instructions for reviewers to validate the changes.
 
-## 📸 Screenshots or GIFs (optional)
+## 📸 Screenshots or GIFs
 
 If there are visual changes, add screenshots or screen recordings.
